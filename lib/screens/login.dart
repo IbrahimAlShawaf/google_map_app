@@ -9,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // نعريف المتغيرات
+
   final _formKey = GlobalKey<FormState>();
 
   late String email;
@@ -17,15 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
-  //  TextEditingController _emailTextController = TextEditingController();
-  //  TextEditingController _passwordTextController = TextEditingController();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _emailTextController = TextEditingController();
-  //   _passwordTextController = TextEditingController();
-  // }
+ 
 
   @override
   void dispose() {
@@ -52,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 150,
                       width: 150,
                       alignment: Alignment.topLeft,
+                      // مسار الصورة المتحركة
                       child: Image.asset('assets/images/login.gif'),
                     ),
                   ),
@@ -71,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 40),
+                  // الايميل
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: emailTextController,
@@ -104,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   const SizedBox(height: 10),
+                  // كلمة المرور
                   TextFormField(
                     controller: passwordTextController,
                     keyboardType: TextInputType.text,
@@ -152,6 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    // زر الدخول
                     child: Text(
                       'LOGIN',
                       style: GoogleFonts.actor(

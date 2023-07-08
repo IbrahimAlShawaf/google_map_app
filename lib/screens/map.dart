@@ -66,7 +66,7 @@ class _MapPageState extends State<MapPage> {
 
   late GoogleMapController mapController;
 
-  LatLng? _selectedPosition;
+  LatLng? selectedPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class _MapPageState extends State<MapPage> {
                     position: position,
                   ),
                 );
-                _selectedPosition = position;
+                selectedPosition = position;
               });
             },
             // إضافة العلامات والمضلع
@@ -145,25 +145,7 @@ class _MapPageState extends State<MapPage> {
         //   ),
         // )
       ]),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blueGrey,
-        elevation: 10.0,
-        onPressed: () {
-          if (_selectedPosition != null) {
-            Navigator.pushNamed(
-              context,
-              '/data',
-              arguments: _selectedPosition,
-            );
-          }
-        },
-        child: Icon(
-          Icons.map,
-          size: 35,
-        ),
-      ),
+      
     );
   }
 }

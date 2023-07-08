@@ -7,6 +7,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+    // نعريف المتغيرات
+
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
 
@@ -39,6 +42,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 150,
                       width: 150,
                       alignment: Alignment.topLeft,
+                                            // مسار الصورة المتحركة
+
                       child: Image.asset('assets/images/registered.gif'),
                     ),
                   ),
@@ -58,6 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 40),
+// إسم المستخدم
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'UserName',
@@ -88,6 +94,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   const SizedBox(height: 10),
+                                    // الايميل
+
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Email',
@@ -119,6 +127,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   const SizedBox(height: 10),
+                                    // كلمة المرور
+
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Password',

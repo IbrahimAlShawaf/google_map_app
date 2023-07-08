@@ -5,7 +5,7 @@ class WelcomeScreen extends StatefulWidget {
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
-
+// عمل أنيميشن لدخول التطبيق تحنوي صورة متحركة وإسم التطبيق
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
@@ -36,6 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     Future.delayed(
       const Duration(seconds: 4),
       () {
+        // التحويل الى صفحة الدخول بعد 4 ثواني
         Navigator.pushReplacementNamed(context, '/login');
       },
     );
@@ -53,12 +54,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   height: 200,
                   width: 200,
                   alignment: Alignment.topLeft,
+                  // مسار الصورة
                   child: Image.asset('assets/images/worldwide.gif'),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
+              // الترحيب بالزائر
               Text(
                 'Welcome Back',
                 style: GoogleFonts.actor(

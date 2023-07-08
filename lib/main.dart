@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_map_app/screens/datapage.dart';
 import 'package:google_map_app/screens/homepage.dart';
 import 'package:google_map_app/screens/login.dart';
 import 'package:google_map_app/screens/map.dart';
@@ -27,8 +26,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomePage(),
         '/map': (context) => MapPage(),
-        '/data': (context) => AddDataPage(),
-        // '/preview': (context) => PreviewDataPage(),
+      //   '/data': (context) => AddDataPage(),
+      //  '/mapscreen': (context) => MapScreen (),
       },
     );
   }

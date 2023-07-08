@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // زر الدحول الى الخريطة
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/map');
@@ -38,6 +39,7 @@ class HomePage extends StatelessWidget {
                     letterSpacing: 1),
               ),
             ),
+            
             const SizedBox(
               height: 20,
             ),
@@ -52,6 +54,7 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              // زر الخروج من التطبيق
               child: Text(
                 'Logout',
                 style: GoogleFonts.actor(
@@ -60,6 +63,7 @@ class HomePage extends StatelessWidget {
                     letterSpacing: 1),
               ),
             ),
+            
           ],
         ),
       ),
