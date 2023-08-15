@@ -13,22 +13,17 @@ class DataPage extends StatefulWidget {
 
 class _DataPageState extends State<DataPage> {
   //  geocodingداخل ملف يامل  يجب تثبيت حزمة     placemarkFromCoordinatesللوصول الى الدالة
-  // getData() async{
-  //   List<Placemark> placemarks =
-  //   await placemarkFromCoordinates(31.317600, 34.339093);
+  getData() async{
+    List<Placemark> placemarks =
+    await placemarkFromCoordinates(31.317600, 34.339093);
 
-  // }
-  // @override
-  // void initState() {
-  //   getData();
-  //   super.initState();
-  // }
-  List<double> distance = [];
-List<double> latNew = [];
-List<double> lngNew = [];
-List<String> titles = [];
-List<String> images = [];
-int i = 3;
+  }
+  @override
+  void initState() {
+    getData();
+    super.initState();
+   }
+  
 
   @override
   Widget build(BuildContext context) {
