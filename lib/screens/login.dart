@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_map_app/screens/homepage.dart';
+import 'package:google_map_app/screens/register.dart';
+import 'package:google_map_app/screens/welcome.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,26 +14,38 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // نعريف المتغيرات
 
-  final _formKey = GlobalKey<FormState>();
+  // إذا لم يتم إدخال أي قيمة، فإنه يُسمح بتخزين قيمة null. تم تعريفه كـ null-safety باستخدام العلامة ?.
+  String? userEmail;
+  String? userPassword;
+  // يُستخدم عادة للتحقق من صحة المدخلات المدخلة من المستخدم وتنفيذ إجراءات محددة بناءً على ذلك
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // يُسهل استخدامه للوصول إلى القيمة المدخلة في الحقل وتحديثها أو استخدامها في وظائف أخرى
+  TextEditingController emailTextController = TextEditingController();
 
-  late String email;
-  late String password;
-
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
-
- 
-
-  @override
-  void dispose() {
-    emailTextController.dispose();
-    passwordTextController.dispose();
-    super.dispose();
-  }
+  TextEditingController passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //الرجوع للصفحة الترحيب
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) {
+                return Welcome();
+              }),
+            );
+          },
+        ),
+        title: Text(
+          "Back To Welcome Screen",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -95,9 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       // You can add email validation logic here
                       return null;
                     },
-                    onSaved: (value) {
-                      email = value!;
-                    },
                   ),
                   const SizedBox(height: 10),
                   // كلمة المرور
@@ -130,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      password = value!;
+                      userPassword = value ?? "";
                     },
                   ),
                   const SizedBox(height: 30),
@@ -139,11 +151,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         // You can perform registration logic here
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) {
+                            return HomePage();
+                          }),
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blueGrey,
+                      backgroundColor: Colors.blueGrey,
                       minimumSize: const Size(double.infinity, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -164,7 +180,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('Don\'t have an account'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/register');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) {
+                                return RegisterScreen();
+                              }),
+                            );
                           },
                           child: const Text('Create Now!'))
                     ],

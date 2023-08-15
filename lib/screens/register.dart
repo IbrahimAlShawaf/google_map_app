@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_map_app/screens/homepage.dart';
+import 'package:google_map_app/screens/login.dart';
+import 'package:google_map_app/screens/welcome.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -7,26 +10,32 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // نعريف المتغيرات
 
-    // نعريف المتغيرات
-
-  final _formKey = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
-
-  late String username;
-  late String email;
-  late String password;
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? userName, userEmail, userPassword;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) {
+                return Welcome();
+              }),
+            );
+          },
+        ),
+        title: Text(
+          "Back To Welcome Screen",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -34,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Form(
               key: _formKey,
               child: Column(
-               // crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Align(
                     alignment: Alignment.topCenter,
@@ -42,7 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 150,
                       width: 150,
                       alignment: Alignment.topLeft,
-                                            // مسار الصورة المتحركة
+                      // مسار الصورة المتحركة
 
                       child: Image.asset('assets/images/registered.gif'),
                     ),
@@ -90,11 +99,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      username = value!;
+                      userName = value!;
                     },
                   ),
                   const SizedBox(height: 10),
-                                    // الايميل
+                  // الايميل
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -123,11 +132,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      email = value!;
+                      userEmail = value!;
                     },
                   ),
                   const SizedBox(height: 10),
-                                    // كلمة المرور
+                  // كلمة المرور
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -149,7 +158,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     obscureText: true,
-                    controller: _passwordController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter a password';
@@ -157,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      password = value!;
+                      userPassword = value!;
                     },
                   ),
                   const SizedBox(height: 30),
@@ -166,11 +174,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         // You can perform registration logic here
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) {
+                          return HomePage();
+                        }));
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blueGrey,
+                      backgroundColor: Colors.blueGrey,
                       minimumSize: const Size(double.infinity, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -190,7 +201,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const Text('have an account'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/login');
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) {
+                              return LoginScreen();
+                            }));
                           },
                           child: const Text('Login Now!'))
                     ],
